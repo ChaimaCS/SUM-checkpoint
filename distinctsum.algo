@@ -1,47 +1,59 @@
-ALGORITHM SUM hashtable
+ALGORITHM Distinct SUM 
 VAR
     tab1: ARRAY_OF INTEGER[100];
     tab2 : ARRAY_OF INTEGER[100];
     t1 : HASH_TABLE < INTEGER,INTEGER>
-    t2 : HASH_TABLE < INTEGER,INTEGER>;
     i,j,sum : INTEGER;
 
 BEGIN
-sum2:=0;
+sum:=0;
 
 
 
-FOR i FROM 0 TO tab1.length DO
-FOR j FROM 0 TO tab2.length DO
-        IF (tab1[i]<>tab2[j]) THEN
+FOR i FROM 0 TO tab1.length-1 DO
+FOR j FROM 0 TO tab2.length-1 DO
+        IF ((tab1[i]<>tab2[j]) and (j=tab2.length-1)) THEN
         sum += tab1[i]
-    END_IF
+        END_IF
 END_FOR
 END_FOR
-FOR j FROM 0 TO tab2.length DO
-FOR i FROM 0 TO tab1.length DO
-    IF (tab1[i]<>tab2[j]) THEN
+FOR j FROM 0 TO tab2.length-1 DO
+FOR i FROM 0 TO tab1.length-1 DO
+    IF ((tab1[i]<>tab2[j]) and (i=tab1.length-1)) THEN
         sum += tab2[j]
     END_IF
 END_FOR
 END_FOR
 
+sum:=0;
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        IF (t1.lookup(tab1[i]) = TRUE) THEN
+        count := t1.get(tab1[i]);
+        t1.insert(tab1[i],count+1);
+        ELSE
+        T1.insert(tab1[i],1);
+        END_IF
+END_FOR
+FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+        IF (t1.lookup(tab2[j]) = TRUE) THEN
+        count := t1.get(tab2[j]);
+        t1.insert(tab2[j],count+1);
+        ELSE
+        t1.insert(tab2[j],1);
+        END_IF
+END_FOR
 
-    Read(t1);
-    Read(t2);
-    FOR i FROM 0 TO t1.length -1 DO
-    FOR j FROM 0 TO t2.length -1 DO
-        IF (t1.lookup[i] <> t2.lookup[j]) THEN
-            sum+=t1.get([i]);
+
+    FOR i FROM 0 TO tab1.length -1 STEP 1  DO
+        IF (t1.get(tab1[i]) = 1) THEN
+            sum+=tab1[i];
+            
         END_IF
     END_FOR
-    END_FOR
-
-    FOR j FROM 0 TO t2.length -1 DO
-    FOR i FROM 0 TO t1.length -1 DO
-        IF (t2.lookup[j] <> t1.lookup[i]) THEN
-            sum+=t2.get([j]);
+    FOR j FROM 0 TO tab2.length -1 STEP 1  DO
+        IF (t1.get(tab2[j]) = 1) THEN
+            sum+=tab2[j];
+            
         END_IF
     END_FOR
-    END_FOR
-END
+END   

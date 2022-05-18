@@ -1,4 +1,4 @@
-Algorithm sum
+Algorithm Overlapping sum
 VAR
 i,j,sum: INTEGER;
 tab1: ARRAY_OF INTEGER[100];
@@ -36,10 +36,10 @@ sum:=0;
 END_FOR
 FOR j FROM 0 TO tab2.length-1 STEP 1  DO
         IF (t1.lookup(tab2[j]) = TRUE) THEN
-        count := t1.get(tab2[i]);
+        count := t1.get(tab2[j]);
         t1.insert(tab2[j],count+1);
         ELSE
-        T1.insert(tab2[j],1);
+        t1.insert(tab2[j],1);
         END_IF
 END_FOR
 
